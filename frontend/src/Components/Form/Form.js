@@ -102,13 +102,16 @@ const FormStyled = styled.form`
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    border: 1px solid #fff;
+    border-radius: 10px;
+    padding: 2rem;
     input, textarea, select{
         font-family: inherit;
         font-size: inherit;
         outline: none;
         border: none;
         padding: .5rem 1rem;
-        border-radius: 5px;
+        border-radius: 10px;
         border: 2px solid #fff;
         background: transparent;
         resize: none;

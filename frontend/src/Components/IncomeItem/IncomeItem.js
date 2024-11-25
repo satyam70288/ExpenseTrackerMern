@@ -16,8 +16,8 @@ function IncomeItem({
     type
 }) {
 
-    const categoryIcon = () =>{
-        switch(category) {
+    const categoryIcon = () => {
+        switch (category) {
             case 'salary':
                 return money;
             case 'freelancing':
@@ -62,7 +62,6 @@ function IncomeItem({
         }
     }
 
-    console.log('type', type)
 
     return (
         <IncomeItemStyled indicator={indicatorColor}>
@@ -81,7 +80,7 @@ function IncomeItem({
                         </p>
                     </div>
                     <div className="btn-con">
-                        <Button 
+                        <Button
                             icon={trash}
                             bPad={'1rem'}
                             bRad={'50%'}
@@ -113,14 +112,14 @@ const IncomeItemStyled = styled.div`
     .icon{
         width: 80px;
         height: 80px;
-        border-radius: 20px;
+        border-radius: 50px;
         background: #F5F5F5;
         display: flex;
         align-items: center;
         justify-content: center;
         border: 2px solid #FFFFFF;
         i{
-            font-size: 2.6rem;
+            font-size: 4rem;
         }
     }
 

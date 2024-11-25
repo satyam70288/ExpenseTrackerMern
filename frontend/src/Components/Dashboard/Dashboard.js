@@ -46,19 +46,19 @@ function Dashboard() {
                         <History />
                         <h2 className="salary-title">Min <span>Salary</span>Max</h2>
                         <div className="salary-item">
-                            <p>
+                            <p style={{color: 'green'}}>
                                 ${Math.min(...incomes.map(item => item.amount))}
                             </p>
-                            <p>
+                            <p style={{color: 'green'}}>
                                 ${Math.max(...incomes.map(item => item.amount))}
                             </p>
                         </div>
                         <h2 className="salary-title">Min <span>Expense</span>Max</h2>
                         <div className="salary-item">
-                            <p>
+                            <p style={{color: 'red'}}>
                                 ${Math.min(...expenses.map(item => item.amount))}
                             </p>
-                            <p>
+                            <p style={{color: 'red'}}>
                                 ${Math.max(...expenses.map(item => item.amount))}
                             </p>
                         </div>
@@ -82,8 +82,14 @@ const DashboardStyled = styled.div`
                 grid-template-columns: repeat(4, 1fr);
                 gap: 2rem;
                 margin-top: 2rem;
-                .income, .expense{
+                .income
+                {
                     grid-column: span 2;
+                    color:green;
+                }
+                 .expense{
+                    grid-column: span 2;
+                    color:red;
                 }
                 .income, .expense, .balance{
                     background: #FCF6F9;
