@@ -20,6 +20,14 @@ Make sure you have [Node.js](https://nodejs.org/) installed on your system.
 
 ### Clone the Repository
 
-```bash
 git clone https://github.com/yourusername/expense-tracker.git
 cd expense-tracker
+npm install
+npm start
+
+Usage:
+Add Expenses: Click the "Add Expense" button to input your expense details (amount, category, description).
+Edit Expenses: Update or remove any existing expenses.
+Set Budgets: Create budget categories and set limits for each category.
+View Reports: Navigate to the "Reports" section to view spending trends over time.
+Track Your Spending: Check out your overall spending and see a breakdown by categorie
