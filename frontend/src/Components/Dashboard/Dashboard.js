@@ -7,8 +7,8 @@ import { dollar } from '../../utils/Icons';
 import Chart from '../Chart/Chart';
 
 function Dashboard() {
-    const {totalExpenses,incomes, expenses, totalIncome, totalBalance, getIncomes, getExpenses } = useGlobalContext()
-
+    const { totalExpenses, incomes, expenses, totalIncome, totalBalance, getIncomes, getExpenses } = useGlobalContext()
+    const [year, setYear] = React.useState(2024)
     useEffect(() => {
         getIncomes()
         getExpenses()
@@ -20,7 +20,7 @@ function Dashboard() {
                 <h1>All Transactions</h1>
                 <div className="stats-con">
                     <div className="chart-con">
-                        <Chart />
+                        <Chart year={year} />
                         <div className="amount-con">
                             <div className="income">
                                 <h2>Total Income</h2>
@@ -46,19 +46,19 @@ function Dashboard() {
                         <History />
                         <h2 className="salary-title">Min <span>Salary</span>Max</h2>
                         <div className="salary-item">
-                            <p style={{color: 'green'}}>
+                            <p style={{ color: 'green' }}>
                                 ${Math.min(...incomes.map(item => item.amount))}
                             </p>
-                            <p style={{color: 'green'}}>
+                            <p style={{ color: 'green' }}>
                                 ${Math.max(...incomes.map(item => item.amount))}
                             </p>
                         </div>
                         <h2 className="salary-title">Min <span>Expense</span>Max</h2>
                         <div className="salary-item">
-                            <p style={{color: 'red'}}>
+                            <p style={{ color: 'red' }}>
                                 ${Math.min(...expenses.map(item => item.amount))}
                             </p>
-                            <p style={{color: 'red'}}>
+                            <p style={{ color: 'red' }}>
                                 ${Math.max(...expenses.map(item => item.amount))}
                             </p>
                         </div>
@@ -120,6 +120,21 @@ const DashboardStyled = styled.div`
 
         .history-con{
             grid-column: 4 / -1;
+            height: 80vh;
+           overflow-y: scroll;
+           ::-webkit-scrollbar{
+                display: none;
+            }
+            .history-title{
+                margin: 1rem 0;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+            .history-list{
+                display: flex;
+                align-items: center;
+           }
             h2{
                 margin: 1rem 0;
                 display: flex;
@@ -133,6 +148,7 @@ const DashboardStyled = styled.div`
                 }
             }
             .salary-item{
+
                 background: #FCF6F9;
                 border: 2px solid #FFFFFF;
                 box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.06);
