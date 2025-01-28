@@ -6,11 +6,12 @@ import Form from '../Form/Form';
 import IncomeItem from '../IncomeItem/IncomeItem';
 
 function Income() {
-    const {addIncome,incomes, getIncomes, deleteIncome, totalIncome} = useGlobalContext()
+    const {addIncome, incomes, getIncomes, deleteIncome, totalIncome} = useGlobalContext()
 
-    useEffect(() =>{
+    useEffect(() => {
         getIncomes()
     }, [])
+
     return (
         <IncomeStyled>
             <InnerLayout>
@@ -45,8 +46,18 @@ function Income() {
 
 const IncomeStyled = styled.div`
     display: flex;
+    flex-direction: column; /* Column layout for small screens */
     overflow: auto;
-    .total-income{
+    height: 100%;
+    
+    ::-webkit-scrollbar {
+        display: none; /* Hide scrollbar in webkit browsers */
+    }
+
+    -ms-overflow-style: none;  /* For Internet Explorer 10+ */
+    scrollbar-width: none; /* For Firefox */
+
+    .total-income {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -58,19 +69,38 @@ const IncomeStyled = styled.div`
         margin: 1rem 0;
         font-size: 2rem;
         gap: .5rem;
-        span{
+
+        span {
             font-size: 2.5rem;
             font-weight: 800;
             color: var(--color-green);
         }
     }
-    .income-content{
+
+    .income-content {
         display: flex;
+        flex-direction: column; /* Column layout for small screens */
         gap: 2rem;
-        .incomes{
+        
+        .incomes {
             flex: 1;
+        }
+    }
+
+    /* Media query for medium and large screens (min-width: 768px) */
+    @media (min-width: 768px) {
+        .income-content {
+            flex-direction: column; /* Ensure column layout for medium screens */
+        }
+    }
+
+    /* Media query for larger screens (min-width: 1024px) */
+    @media (min-width: 1024px) {
+        .income-content {
+            flex-direction: row; /* Switch to row layout on larger screens */
+            gap: 3rem;
         }
     }
 `;
 
-export default Income
+export default Income;

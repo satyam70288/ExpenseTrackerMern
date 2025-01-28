@@ -7,11 +7,12 @@ import IncomeItem from '../IncomeItem/IncomeItem';
 import ExpenseForm from './ExpenseForm';
 
 function Expenses() {
-    const {addIncome,expenses, getExpenses, deleteExpense, totalExpenses} = useGlobalContext()
+    const {addIncome, expenses, getExpenses, deleteExpense, totalExpenses} = useGlobalContext()
 
-    useEffect(() =>{
+    useEffect(() => {
         getExpenses()
     }, [])
+
     return (
         <ExpenseStyled>
             <InnerLayout>
@@ -22,8 +23,8 @@ function Expenses() {
                         <ExpenseForm />
                     </div>
                     <div className="incomes">
-                        {expenses.map((income) => {
-                            const {_id, title, amount, date, category, description, type} = income;
+                        {expenses.map((expense) => {
+                            const {_id, title, amount, date, category, description, type} = expense;
                             return <IncomeItem
                                 key={_id}
                                 id={_id} 
@@ -47,7 +48,16 @@ function Expenses() {
 const ExpenseStyled = styled.div`
     display: flex;
     overflow: auto;
-    .total-income{
+    flex-direction: column; /* Column layout by default for small and medium screens */
+    
+    ::-webkit-scrollbar {
+        display: none; /* Hide scrollbar in webkit browsers */
+    }
+
+    -ms-overflow-style: none;  /* For Internet Explorer 10+ */
+    scrollbar-width: none; /* For Firefox */
+
+    .total-income {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -59,19 +69,38 @@ const ExpenseStyled = styled.div`
         margin: 1rem 0;
         font-size: 2rem;
         gap: .5rem;
-        span{
+
+        span {
             font-size: 2.5rem;
             font-weight: 800;
             color: var(--color-green);
         }
     }
-    .income-content{
+
+    .income-content {
         display: flex;
+        flex-direction: column; /* Stack in a column for small and medium screens */
         gap: 2rem;
-        .incomes{
+        
+        .incomes {
             flex: 1;
+        }
+    }
+
+    /* Media query for medium and larger screens (min-width: 768px) */
+    @media (min-width: 768px) {
+        .income-content {
+            flex-direction: column; /* Ensure column layout for medium screens */
+        }
+    }
+
+    /* Media query for larger screens (min-width: 1024px) */
+    @media (min-width: 1024px) {
+        .income-content {
+            flex-direction: row; /* Switch to row layout on larger screens */
+            gap: 3rem;
         }
     }
 `;
 
-export default Expenses
+export default Expenses;

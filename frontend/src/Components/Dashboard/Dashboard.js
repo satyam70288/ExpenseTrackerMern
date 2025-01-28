@@ -20,8 +20,9 @@ function Dashboard() {
                 <h1>All Transactions</h1>
                 <div className="stats-con">
                     <div className="chart-con">
-                        <Chart year={year} />
-                        <div className="amount-con">
+                        <Chart year={year} />    
+                    </div>
+                    <div className="amount-con">
                             <div className="income">
                                 <h2>Total Income</h2>
                                 <p>
@@ -41,7 +42,6 @@ function Dashboard() {
                                 </p>
                             </div>
                         </div>
-                    </div>
                     <div className="history-con">
                         <History />
                         <h2 className="salary-title">Min <span>Salary</span>Max</h2>
@@ -68,102 +68,177 @@ function Dashboard() {
         </DashboardStyled>
     )
 }
-
 const DashboardStyled = styled.div`
-    .stats-con{
-        display: grid;
-        grid-template-columns: repeat(5, 1fr);
+    .dashboard-title {
+        text-align: center;
+        font-size: 2.8rem;
+        font-weight: 700;
+        margin-bottom: 2rem;
+        color: #4c6ef5; /* Soft blue for a fresh look */
+        font-family: 'Montserrat', sans-serif; /* Modern, clean font */
+    }
+
+    .stats-con {
+        display: flex;
+        flex-direction: column;
         gap: 2rem;
-        .chart-con{
-            grid-column: 1 / 4;
-            height: 400px;
-            .amount-con{
-                display: grid;
-                grid-template-columns: repeat(4, 1fr);
-                gap: 2rem;
+        padding: 0 2rem;
+
+        .chart-con {
+            background: #f0f4ff; /* Light pastel blue background */
+            border: 2px solid #e1e9ff;
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            height: 70vh; /* Ensure chart height is 70vh */
+            overflow: hidden;
+
+            }
+             .amount-con {
+                display: flex;
+                gap: 1.5rem;
                 margin-top: 2rem;
-                .income
-                {
-                    grid-column: span 2;
-                    color:green;
-                }
-                 .expense{
-                    grid-column: span 2;
-                    color:red;
-                }
-                .income, .expense, .balance{
-                    background: #FCF6F9;
-                    border: 2px solid #FFFFFF;
-                    box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.06);
-                    border-radius: 20px;
-                    padding: 1rem;
-                    p{
-                        font-size: 3.5rem;
-                        font-weight: 700;
+
+                .income,
+                .expense,
+                .balance {
+                    background: #4c6ef5; /* Soft blue for consistency */
+                    color: #fff;
+                    border-radius: 12px;
+                    padding: 1.2rem;
+                    text-align: center;
+                    transition: transform 0.3s ease, box-shadow 0.3s ease;
+                    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+                    &:hover {
+                        transform: scale(1.05);
+                        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+                    }
+
+                    h2 {
+                        font-size: 1.4rem;
+                        font-weight: 600;
+                        font-family: 'Roboto', sans-serif;
+                    }
+
+                    p {
+                        font-size: 2.2rem;
+                        font-weight: bold;
+                        font-family: 'Roboto', sans-serif;
                     }
                 }
 
-                .balance{
-                    grid-column: 2 / 4;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    align-items: center;
-                    p{
-                        color: var(--color-green);
-                        opacity: 0.6;
-                        font-size: 4.5rem;
-                    }
+        }
+
+        .history-con {
+            background: #fff;
+            border: 2px solid #e9ecef;
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            padding: 1.5rem;
+            font-family: 'Roboto', sans-serif;
+
+            h2 {
+                font-size: 1.6rem;
+                font-weight: 700;
+                margin-bottom: 1rem;
+                color: #4c6ef5;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                span {
+                    color: #4c6ef5;
+                    font-size: 1.4rem;
+                }
+            }
+
+            .salary-item {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background:rgb(104, 113, 238);
+                border-radius: 10px;
+                padding: 1rem;
+                margin-bottom: 1rem;
+
+                p {
+                    font-size: 1.3rem;
+                    font-weight: 500;
+                    color: #495057;
                 }
             }
         }
+    }
 
-        .history-con{
-            grid-column: 4 / -1;
-            height: 80vh;
-           overflow-y: scroll;
-           ::-webkit-scrollbar{
-                display: none;
+    // Media queries for responsiveness
+    @media (max-width: 768px) {
+        .stats-con {
+            gap: 1.5rem;
+            padding: 0 1rem;
+        }
+
+        .chart-con {
+            .amount-con {
+                gap: 1.5rem;
             }
-            .history-title{
-                margin: 1rem 0;
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-            }
-            .history-list{
-                display: flex;
-                align-items: center;
-           }
-            h2{
-                margin: 1rem 0;
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-            }
-            .salary-title{
-                font-size: 1.2rem;
-                span{
-                    font-size: 1.8rem;
+        }
+
+        .history-con {
+            .salary-item {
+                flex-direction: column;
+                align-items: flex-start;
+
+                p {
+                    font-size: 1.1rem;
                 }
             }
-            .salary-item{
+        }
+    }
 
-                background: #FCF6F9;
-                border: 2px solid #FFFFFF;
-                box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.06);
-                padding: 1rem;
-                border-radius: 20px;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                p{
-                    font-weight: 600;
-                    font-size: 1.6rem;
+    @media (max-width: 480px) {
+        .stats-con {
+            gap: 1rem;
+            padding: 0 0.5rem;
+        }
+
+        .chart-con,
+        .history-con {
+            padding: 1rem;
+        }
+
+        .amount-con {
+            gap: 1rem;
+        }
+
+        .income,
+        .expense,
+        .balance {
+            padding: 0.8rem;
+            p {
+                font-size: 1.8rem;
+            }
+        }
+
+        .history-con {
+            .salary-item {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 0.8rem 1rem;
+                p {
+                    font-size: 1rem;
                 }
             }
         }
     }
 `;
+
+
+
+
+
+
+
+
 
 export default Dashboard

@@ -1,8 +1,8 @@
 import React, { useContext, useState } from "react"
 import axios from 'axios'
+import {server} from '../constant/config'
 
-
-const BASE_URL = "http://localhost:5000/api/v1/";
+const BASE_URL = server;
 
 
 const GlobalContext = React.createContext()
@@ -17,6 +17,7 @@ export const GlobalProvider = ({children}) => {
     const addIncome = async (income) => {
         const response = await axios.post(`${BASE_URL}add-income`, income)
             .catch((err) =>{
+                console.log(err)
                 setError(err.response.data.message)
             })
         getIncomes()
@@ -83,7 +84,7 @@ export const GlobalProvider = ({children}) => {
             return new Date(b.createdAt) - new Date(a.createdAt)
         })
 
-        return history.slice(0, 3)
+        return history
     }
 
 

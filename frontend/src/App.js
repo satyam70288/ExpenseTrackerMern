@@ -49,17 +49,42 @@ function App() {
 const AppStyled = styled.div`
   height: 100vh;
   position: relative;
-  main{
+  font-family: 'Roboto', sans-serif; /* Clean font for the app */
+
+  main {
     flex: 1;
-    background: rgba(252, 246, 249, 0.78);
-    border: 3px solid #FFFFFF;
-    backdrop-filter: blur(4.5px);
+    background: linear-gradient(145deg, #6a73e0, #3b4f9c); /* Soft gradient background */
+    border: 3px solid #fff;
+    backdrop-filter: blur(8px); /* Smoother backdrop effect */
     border-radius: 32px;
     overflow-x: hidden;
-    &::-webkit-scrollbar{
-      width: 0;
+    padding: 2rem; /* Keep padding for spacing */
+    padding-top: 0; /* Remove top space from all transactions */
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem; /* Space between sections */
+    align-items: center; /* Center align elements inside main */
+    
+    &::-webkit-scrollbar {
+      width: 0; /* Hide scrollbar */
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #fff;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    p {
+      font-size: 1.2rem;
+      color: #f8f9fa; /* Lighter text for contrast */
+      line-height: 1.5;
     }
   }
 `;
+
+
 
 export default App;
